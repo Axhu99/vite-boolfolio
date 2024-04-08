@@ -4,12 +4,16 @@ import { createRouter, createWebHistory } from 'vue-router';
 //importo le pagini 
 import HomePage from '../components/pages/HomePage.vue';
 import ContactUsPage from '../components/pages/ContactUsPage.vue';
+import NotFoundPage from '../components/pages/NotFoundPage.vue';
 
 //definisco le rotte
 export default createRouter({
     history: createWebHistory(),
+    linkExactActiveClass: 'active',
     routes: [
-        { path: '/', component: HomePage },
-        { path: '/contact-us', component: ContactUsPage },
+        { path: '/', component: HomePage, name: 'home' },
+        { path: '/contact-us', component: ContactUsPage, name: 'contact-us' },
+        { path: '/not-found', component: NotFoundPage, name: 'not-found' },
+        { path: '/:pathMatch(.*)*', redirect: 'not-found' },
     ]
 })
